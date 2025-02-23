@@ -24,7 +24,7 @@ clauses.append(expr("Ascendente(Helena,Carlos)"))
 clauses.append(expr("Ascendente(Mario,Carlos)"))
 
 clauses.append(expr("Ascendente(Clara,Pietro2)"))
-clauses.append(expr("Ascendente(Enzo,Pietro2)"))
+clauses.append(expr("Ascendente(Clara,Enzo)"))
 
 clauses.append(expr("Ascendente(Jacynto,Francisca)"))
 clauses.append(expr("Ascendente(Jacynto,Antonia)"))
@@ -34,16 +34,16 @@ clauses.append(expr("Ascendente(Claudia,Antonia)"))
 clauses.append(expr("Ascendente(Luzia,Jacynto)"))
 clauses.append(expr("Ascendente(Pablo,Jacynto)"))
 
-clauses.append(expr("Sexo(Pietro1,Masculino)"))
+clauses.append(expr("Sexo(Pietro,Masculino)"))
 clauses.append(expr("Sexo(Antonita,Feminino)"))
-clauses.append(expr("Sexo(João,Masculino)"))
+clauses.append(expr("Sexo(Joao,Masculino)"))
 clauses.append(expr("Sexo(Clara,Feminino)"))
 clauses.append(expr("Sexo(Francisco,Masculino)"))
 clauses.append(expr("Sexo(Valeria,Feminino)"))
 clauses.append(expr("Sexo(Ana,Feminino)"))
 clauses.append(expr("Sexo(Helena,Feminino)"))
 clauses.append(expr("Sexo(Joana,Feminino)"))
-clauses.append(expr("Sexo(Mário,Masculino)"))
+clauses.append(expr("Sexo(Mario,Masculino)"))
 clauses.append(expr("Sexo(Fabiana,Feminino)"))
 clauses.append(expr("Sexo(Pietro2,Masculino)"))
 clauses.append(expr("Sexo(Enzo,Masculino)"))
@@ -73,23 +73,32 @@ clauses.append(expr("Ascendente(x,y) & Ascendente(x,z) & Sexo(z,Feminino) ==> Ir
 clauses.append(expr("Ascendente(x,y) & Ascendente(y,z) & Sexo(x,Masculino) ==> Avozinho(x,z)"))
 clauses.append(expr("Ascendente(x,y) & Ascendente(y,z) & Sexo(x,Feminino) ==> Avozinha(x,z)"))
 
-clauses.append(expr("Ascendente(x,y) & Irmao(x,z) ==> Tio(z,y)"))
-clauses.append(expr("Ascendente(x,y) & Irma(x,z) ==> Tia(z,y)"))
+clauses.append(expr("Irmao(x,y) & Descendente(z,y) ==> Tio(x,z)"))
+clauses.append(expr("Irma(x,y) & Descendente(z,y) ==> Tia(x,z)"))
 
-clauses.append(expr("Tio(x,y) & Ascendente(x,z) & Sexo(z,Masculino) ==> Primo(z,y)"))
-clauses.append(expr("Tio(x,y) & Ascendente(x,z) & Sexo(z,Feminino) ==> Prima(z,y)"))
+clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(z,Masculino) ==> Primo(z,y)"))
+clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(y,Masculino) ==> Primo(y,z)"))
+clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(z,Masculino) ==> Primo(z,y)"))
+clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(y,Masculino) ==> Primo(y,z)"))
+
+clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(z,Feminino) ==> Prima(z,y)"))
+clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(y,Feminino) ==> Prima(y,z)"))
+clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(z,Feminino) ==> Prima(z,y)"))
+clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(y,Feminino) ==> Prima(y,z)"))
+
+
 
 Genealogia = FolKB(clauses)
 
-perguntas = ["Sexo(x,Masculino)",
-             "Sexo(x,Feminino)",
-             "Irmao(x,Ana)",
-             "Irma(x,Joao)",
-             "Descendente(x,Maria)",
-             "Descendente(Joao,x)",
-             "Pessoa(x)",
-             "Mae(x,y)",
-             "Pai(x,y)"]
+perguntas = [
+            "Avozinho(x,Antonia)",
+            "Avozinha(x,Antonia)",
+            "Tio(x,Helena)",
+            "Tia(x,Mario)",
+            "Primo(x,Pietro2)",
+            "Prima(x,Enzo)",
+            "Descendente(x,Clara)",
+            "Ascendente(Antonita,y)"]
 
 
 
