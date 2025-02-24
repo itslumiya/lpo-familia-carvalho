@@ -54,7 +54,6 @@ clauses.append(expr("Sexo(Claudia,Feminino)"))
 clauses.append(expr("Sexo(Pablo,Masculino)"))
 clauses.append(expr("Sexo(Luzia,Feminino)"))
 
-
 clauses.append(expr("Ascendente(x,y) ==> Pessoa(x)"))
 clauses.append(expr("Ascendente(x,y) ==> Pessoa(y)"))
 
@@ -76,15 +75,10 @@ clauses.append(expr("Ascendente(x,y) & Ascendente(y,z) & Sexo(x,Feminino) ==> Av
 clauses.append(expr("Irmao(x,y) & Descendente(z,y) ==> Tio(x,z)"))
 clauses.append(expr("Irma(x,y) & Descendente(z,y) ==> Tia(x,z)"))
 
-clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(z,Masculino) ==> Primo(z,y)"))
-clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(y,Masculino) ==> Primo(y,z)"))
-clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(z,Masculino) ==> Primo(z,y)"))
-clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(y,Masculino) ==> Primo(y,z)"))
-
-clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(z,Feminino) ==> Prima(z,y)"))
-clauses.append(expr("Tio(x,y) & Descendente(z,x) & Sexo(y,Feminino) ==> Prima(y,z)"))
-clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(z,Feminino) ==> Prima(z,y)"))
-clauses.append(expr("Tia(x,y) & Descendente(z,x) & Sexo(y,Feminino) ==> Prima(y,z)"))
+clauses.append(expr("(Irmao(x,y) or Irma(x,y)) & Ascendente(x, a) & Ascendente(y, b) & Sexo(a, Masculino) ==> Primo(a,b)"))
+clauses.append(expr("(Irmao(x,y) or Irma(x,y)) & Ascendente(x, a) & Ascendente(y, b) & Sexo(b, Masculino) ==> Primo(b,a)"))
+clauses.append(expr("(Irmao(x,y) or Irma(x,y)) & Ascendente(x, a) & Ascendente(y, b) & Sexo(a, Feminino) ==> Prima(a,b)"))
+clauses.append(expr("(Irmao(x,y) or Irma(x,y)) & Ascendente(x, a) & Ascendente(y, b) & Sexo(b, Feminino) ==> Prima(b,a)"))
 
 
 
@@ -98,7 +92,11 @@ perguntas = [
             "Primo(x,Pietro2)",
             "Prima(x,Enzo)",
             "Descendente(x,Clara)",
-            "Ascendente(Antonita,y)"]
+            "Ascendente(Antonita,y)"
+            "Prima(x,Mario)",
+            "Primo(x,Mario)",
+            "Primo(x,Pietro2)",
+            "Primo(x,Helena)",]
 
 
 
